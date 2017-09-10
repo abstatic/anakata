@@ -8,8 +8,7 @@ int main(int argc, const char *argv[])
   // eg. ./client_20172001 "Bob's Computer" 192.168.1.20 8754 192.168.1.2 8750 14000 ~/Desktop
   if (argc != 8)
   {
-    cout << "Usage: " << argv[0] << " client_alias client_ip client_port server_ip\
-      server_port downloading_port client_root" << endl;
+    cout << "Usage: " << argv[0] << " client_alias client_ip client_port server_ip server_port downloading_port client_root" << endl;
     return 1;
   }
   string c_alias  = argv[1];

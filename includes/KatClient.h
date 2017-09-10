@@ -15,7 +15,7 @@ class KatClient
 public:
   // Constructor and Method declarations
   KatClient(string, string, int, string, int, int, string);
-  virtual ~KatClient();
+  // virtual ~KatClient(); // desturctor MUST be defined. 
 
   // member functions go here
   void registerFile(void);

@@ -5,12 +5,11 @@ CC_OPTIONS = -ggdb3 -Wall -std=c++11
 CFLAGS = $(CC_OPTIONS)
 
 ODIR = obj
-BUILD = build/
+BUILD = build
+BIN = bin
 SDIR = src
-SDIRK = src/katalyn/
-SDIRT = src/trackr/
 
-.PHONY: clean
+.PHONY: clean cleano
 
 all:
 	$(CC) $(CC_OPTIONS) -o $(EXE) $(SRC)
@@ -20,17 +19,19 @@ run:
 	./$(EXE)
 
 config:
-	$(CC) $(CC_OPTIONS) $(SDIR)/configure.cpp -o $(BUILD)configure
-	cd $(BUILD); ./configure
+	$(CC) $(CC_OPTIONS) $(SDIR)/configure.cpp -o $(BUILD)/$@
+	cd $(BUILD); ./$@
 
 # this target compiles and links the client
-client: cleano
+client: clean
 	$(CC) $(CC_OPTIONS) -c $(SDIR)/KatClient/KatClient.cpp -o $(ODIR)/KatClient.o
-	$(CC) $(CC_OPTIONS) -c $(SDIR)/logger.cpp -o $(BUILD)/logger.o
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/KatClient/katalyn.cpp -o $(ODIR)/katalyn.o
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/logger.cpp -o $(ODIR)/logger.o
+	$(CC) $(CC_OPTIONS) $(ODIR)/*.o  -o $(BUILD)/$@
+	cp $(BUILD)/* $(BIN)/
 
 cleano:
-	rm $(ODIR)/*
-
+	rm -f $(ODIR)/*.o
 
 clean:
-	rm $(BUILD)/* $(ODIR)/*
+	rm -f $(BUILD)/* $(ODIR)/*.o
