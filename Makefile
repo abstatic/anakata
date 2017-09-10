@@ -10,6 +10,7 @@ SDIR = src
 SDIRK = src/katalyn/
 SDIRT = src/trackr/
 
+.PHONY: clean
 
 all:
 	$(CC) $(CC_OPTIONS) -o $(EXE) $(SRC)
@@ -22,6 +23,14 @@ config:
 	$(CC) $(CC_OPTIONS) $(SDIR)/configure.cpp -o $(BUILD)configure
 	cd $(BUILD); ./configure
 
+# this target compiles and links the client
+client: cleano
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/KatClient/KatClient.cpp -o $(ODIR)/KatClient.o
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/logger.cpp -o $(BUILD)/logger.o
+
+cleano:
+	rm $(ODIR)/*
+
+
 clean:
 	rm $(BUILD)/* $(ODIR)/*
-
