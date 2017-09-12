@@ -8,6 +8,8 @@ ODIR = obj
 BUILD = build
 BIN = bin
 SDIR = src
+CLIENT = KatClient
+SERVER = KatServ
 
 .PHONY: clean cleano
 
@@ -24,8 +26,16 @@ config:
 
 # this target compiles and links the client
 client: clean
-	$(CC) $(CC_OPTIONS) -c $(SDIR)/KatClient/KatClient.cpp -o $(ODIR)/KatClient.o
-	$(CC) $(CC_OPTIONS) -c $(SDIR)/KatClient/katalyn.cpp -o $(ODIR)/katalyn.o
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/$(CLIENT)/KatClient.cpp -o $(ODIR)/KatClient.o
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/$(CLIENT)/katalyn.cpp -o $(ODIR)/katalyn.o
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/logger.cpp -o $(ODIR)/logger.o
+	$(CC) $(CC_OPTIONS) $(ODIR)/*.o  -o $(BUILD)/$@
+	cp $(BUILD)/* $(BIN)/
+
+# this target compiles and links the server
+server: clean
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/$(SERVER)/KatServ.cpp -o $(ODIR)/KatServ.o
+	$(CC) $(CC_OPTIONS) -c $(SDIR)/$(SERVER)/trackr.cpp -o $(ODIR)/trackr.o
 	$(CC) $(CC_OPTIONS) -c $(SDIR)/logger.cpp -o $(ODIR)/logger.o
 	$(CC) $(CC_OPTIONS) $(ODIR)/*.o  -o $(BUILD)/$@
 	cp $(BUILD)/* $(BIN)/

@@ -11,8 +11,18 @@
 
 #include <iostream>
 #include <cstring>
+#include <string>
+#include <errno.h>
 #include <fstream>
 #include <cstdio>
+#include <map>
+#include <unordered_map>
+#include <forward_list>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <time.h>
+#include <vector>
+#include <algorithm>
 
 #endif /* ifndef base_h */
 

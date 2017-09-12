@@ -7,12 +7,15 @@
  *  reading from a configuration file
  */
 #include "base_conf.h"
+
+using namespace std;
+
 class Logger
 {
 public:
-  Logger(void);
+  Logger(string);
   virtual ~Logger();
-  void writeLog(std::string message);
+  void record(std::string message);
 
 protected:
   std::string log_location; /*!< Default location for the log file */
@@ -20,4 +23,7 @@ protected:
   int log_level;
   std::ofstream log_fp;
 };
+
+void tokenize(string str, vector<string>& tokens, const string& delimiters = " ");
+void sanitize(string&, char);
 #endif /* ifndef logger */
