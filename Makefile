@@ -1,7 +1,7 @@
 ## Makefile for Anakata
 ## Author- Abhishek Shrivastava <abhishek.shrivastava.ts@gmail.com)
 CC = g++
-CC_OPTIONS = -ggdb3 -Wall -std=c++11
+CC_OPTIONS = -ggdb3 -Wall -std=c++11 -lpthread
 CFLAGS = $(CC_OPTIONS)
 
 ODIR = obj
@@ -11,10 +11,9 @@ SDIR = src
 CLIENT = KatClient
 SERVER = KatServ
 
-.PHONY: clean cleano
+.PHONY: clean cleano client server
 
-all:
-	$(CC) $(CC_OPTIONS) -o $(EXE) $(SRC)
+all: client server
 
 run:
 	$(CC) $(CC_OPTIONS) -o $(EXE) $(SRC)

@@ -19,13 +19,15 @@ int main(int argc, const char *argv[])
     // return 1;
   // }
 
-  string s_ip          = "hello";//argv[1];
-  int s_port           = 23;//stoi(argv[2]);
-  string s_repo_file   = argv[1];//argv[3];
-  string s_client_info = argv[2];//argv[4];
-  string s_base        = argv[3];//argv[5];
+  string s_ip          = "127.0.0.1";//argv[1];
+  int s_port           = stoi(argv[1]);//stoi(argv[2]);
+  string s_repo_file   = argv[2];//argv[3];
+  string s_client_info = argv[3];//argv[4];
+  string s_base        = argv[4];//argv[5];
 
   KatServ trackr(s_ip, s_port, s_repo_file, s_client_info, s_base);
+
+  trackr.start();
 
   return 0;
 }

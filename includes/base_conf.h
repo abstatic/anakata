@@ -11,18 +11,26 @@
 
 #include <iostream>
 #include <cstring>
-#include <string>
 #include <errno.h>
 #include <fstream>
 #include <cstdio>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <forward_list>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <time.h>
 #include <vector>
 #include <algorithm>
+#include <arpa/inet.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <thread>
 
 #endif /* ifndef base_h */
 

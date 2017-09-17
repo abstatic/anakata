@@ -1,3 +1,12 @@
+/**
+ * Filename: "logger.cpp"
+ *
+ * Description: This is implementation of the logging class
+ *
+ * Also contains some helper methods
+ *
+ * Author: Abhishek Shrivastava <abhishek.shrivastava.ts@gmail.com>
+ **/
 #include "../includes/logger.h"
 
 using namespace std;
@@ -41,6 +50,10 @@ Logger::~Logger(void)
 
 /**
  * This method is used to tokenize a string with a delimiter provided
+ *
+ * @param str - The string to tokenize
+ * @param tokens - The reference to the vector which will store the tokens
+ * @param delimiters - The string of delimitters at which we will break
  */
 void tokenize(string str, vector<string>& tokens, const string& delimiters)
 {
@@ -70,4 +83,45 @@ void tokenize(string str, vector<string>& tokens, const string& delimiters)
 void sanitize(string& str, char c)
 {
   str.erase(remove(str.begin(), str.end(), c), str.end());
+}
+
+/**
+ * This method is used to map a command string to a DEFINED command int value
+ *
+ * @param cmd_str - the command to match
+ *
+ */
+int interpret_command(string cmd_str)
+{
+  if (cmd_str == "get")
+    return GET;
+  else if (cmd_str == "share")
+    return SHARE;
+  else if (cmd_str == "del")
+    return DEL;
+  else if (cmd_str == "exec")
+    return EXEC;
+  else if (cmd_str == "search")
+    return SEARCH;
+  else if (cmd_str == "ip")
+    return IP;
+  else if (cmd_str == "heartbeat")
+    return PULSE;
+  else if (cmd_str.find("get[") == 0)
+    return GET;
+  else
+    return 0;
+}
+
+/**
+ * This method is used to find a environment variable
+ */
+string GetEnv( const string & var ) {
+     const char * val = getenv( var.c_str() );
+     if ( val == 0 ) {
+         return "";
+     }
+     else {
+         return val;
+     }
 }
